@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pixverse-api"
+version = "0.1.0"
+description = "Python client for the PixVerse API: PixVerse V6 image-to-video generation with audio via a hosted endpoint."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [{name = "pixverse-dev"}]
+keywords = ["ai api", "pixverse", "pixverse api", "pixverse python", "pixverse-v6", "synexa"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["httpx>=0.24"]
+
+[project.urls]
+Homepage = "https://github.com/pixverse-dev/pixverse-api"
+Documentation = "https://pixverse-dev.github.io/pixverse-api/"
+"Hosted model" = "https://synexa.ai/explore/pixverse/pixverse-v6"
+
+[tool.setuptools.packages.find]
+include = ["pixverse_api*"]
