@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PixVerse API — Python client &amp; hosted endpoint</title>
+<meta name="description" content="Python client for the PixVerse API: PixVerse V6 image-to-video generation with audio via a hosted endpoint.">
+<link rel="canonical" href="https://pixverse-dev.github.io/pixverse-api/"><meta name="google-site-verification" content="8NEKdWXBIiAKuN0mqEqYwTB3yB8iIW-_cQmXANbDTs8" /><meta name="msvalidate.01" content="91A75274D586670BEE99EC35A630C098">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is there a PixVerse API?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. PixVerse offers a developer API on its own platform, and PixVerse V6 is also hosted on Synexa as pixverse/pixverse-v6. This client talks to the Synexa endpoint, which takes a first-frame image and a prompt and returns a video."}}, {"@type": "Question", "name": "How much does the PixVerse API cost through this client?", "acceptedAnswer": {"@type": "Answer", "text": "The hosted pixverse/pixverse-v6 endpoint is billed at $0.025 per run, where one run produces one clip. There is no subscription or credit pack; you pay per completed generation."}}, {"@type": "Question", "name": "Can I run PixVerse without a GPU?", "acceptedAnswer": {"@type": "Answer", "text": "With this client, yes. Generation happens on Synexa's GPUs; your machine only needs Python and network access. PixVerse's models are not available for local use."}}, {"@type": "Question", "name": "Does this client work with the PixVerse app or ComfyUI?", "acceptedAnswer": {"@type": "Answer", "text": "No. It does not log into the PixVerse app, use app credits or drive ComfyUI; it only calls the hosted endpoint. Templates and the editing timeline stay in the app."}}, {"@type": "Question", "name": "What input formats does it accept?", "acceptedAnswer": {"@type": "Answer", "text": "image_url accepts .jpg, .png and .webp and is the first frame of the video. prompt is required and limited to 2048 UTF-8 bytes. Optional fields include resolution, duration (1 to 15 seconds), style, negative_prompt, seed, generate_audio_switch, generate_multi_clip_switch and thinking_type."}}, {"@type": "Question", "name": "Is this the official PixVerse SDK?", "acceptedAnswer": {"@type": "Answer", "text": "No. This is an independent client that wraps the Synexa-hosted endpoint. PixVerse's official product and API are at https://app.pixverse.ai."}}]}</script>
+<style>
+:root{--ink:#16191d;--muted:#5b6470;--line:#e3e6ea;--accent:#2563eb;--bg:#fff}
+*{box-sizing:border-box}body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+main{max-width:860px;margin:0 auto;padding:48px 20px 80px}h1{font-size:34px;line-height:1.2;margin:0 0 12px}h2{font-size:22px;margin:40px 0 10px}
+.lead{font-size:18px;color:var(--muted)}.cta{display:inline-block;background:var(--accent);color:#fff;padding:12px 22px;border-radius:8px;font-weight:600;text-decoration:none;margin:12px 8px 12px 0}
+.ghost{display:inline-block;border:1px solid var(--line);padding:11px 20px;border-radius:8px;text-decoration:none;color:var(--ink)}
+pre{background:#0f172a;color:#e2e8f0;padding:16px;border-radius:10px;overflow:auto;font-size:14px}code{font-family:ui-monospace,Menlo,monospace}
+details{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:8px 0}summary{cursor:pointer;font-weight:600}
+footer{margin-top:56px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+</style></head><body><main>
+<h1>PixVerse API for Python</h1>
+<p class="lead">Python client for the PixVerse API: PixVerse V6 image-to-video generation with audio via a hosted endpoint.</p>
+<p><a class="cta" href="https://synexa.ai/explore/pixverse/pixverse-v6?utm_source=github&utm_medium=ugc&utm_campaign=pixverse-dev&utm_content=pages-hero&utm_term=tier-c" rel="noopener">Run PixVerse in the browser →</a> <a class="ghost" href="https://github.com/pixverse-dev/pixverse-api">View on GitHub</a></p>
+<h2>Install</h2>
+<pre><code>pip install git+https://github.com/pixverse-dev/pixverse-api.git
+export SYNEXA_API_KEY="sk-..."</code></pre>
+<h2>Quickstart</h2>
+<pre><code>import pixverse_api
+
+output = pixverse_api.run({
+    "prompt": "A cinematic shot of a lighthouse at dawn, soft fog, warm light",
+    "image_url": "https://example.com/input.png"
+})
+print(output)</code></pre>
+<h2>Hosted models</h2>
+<ul><li><a href="https://synexa.ai/explore/pixverse/pixverse-v6?utm_source=github&utm_medium=ugc&utm_campaign=pixverse-dev&utm_content=pages-models&utm_term=tier-c" rel="noopener">pixverse/pixverse-v6</a> — PixVerse V6 animates a still image into stylised or realistic video, with optional audio. <em>($0.025 / run)</em></li></ul>
+<h2>About PixVerse</h2>
+<p>PixVerse is a generative video platform from AIsphere that turns a still image and a prompt into a short realistic or stylised clip, with optional audio. This Python client calls PixVerse V6 as hosted on Synexa: pass a first-frame image and a prompt, optionally a duration from 1 to 15 seconds, a style, a negative prompt, a seed and switches for generated audio and multi-clip camera changes, and receive a video URL. It is the same V6 model the PixVerse app uses, exposed as a plain HTTP call.</p>
+<h2>FAQ</h2>
+<details><summary>Is there a PixVerse API?</summary><p>Yes. PixVerse offers a developer API on its own platform, and PixVerse V6 is also hosted on Synexa as pixverse/pixverse-v6. This client talks to the Synexa endpoint, which takes a first-frame image and a prompt and returns a video.</p></details><details><summary>How much does the PixVerse API cost through this client?</summary><p>The hosted pixverse/pixverse-v6 endpoint is billed at $0.025 per run, where one run produces one clip. There is no subscription or credit pack; you pay per completed generation.</p></details><details><summary>Can I run PixVerse without a GPU?</summary><p>With this client, yes. Generation happens on Synexa's GPUs; your machine only needs Python and network access. PixVerse's models are not available for local use.</p></details><details><summary>Does this client work with the PixVerse app or ComfyUI?</summary><p>No. It does not log into the PixVerse app, use app credits or drive ComfyUI; it only calls the hosted endpoint. Templates and the editing timeline stay in the app.</p></details><details><summary>What input formats does it accept?</summary><p>image_url accepts .jpg, .png and .webp and is the first frame of the video. prompt is required and limited to 2048 UTF-8 bytes. Optional fields include resolution, duration (1 to 15 seconds), style, negative_prompt, seed, generate_audio_switch, generate_multi_clip_switch and thinking_type.</p></details><details><summary>Is this the official PixVerse SDK?</summary><p>No. This is an independent client that wraps the Synexa-hosted endpoint. PixVerse's official product and API are at https://app.pixverse.ai.</p></details>
+<p><a class="cta" href="https://synexa.ai/explore/pixverse/pixverse-v6?utm_source=github&utm_medium=ugc&utm_campaign=pixverse-dev&utm_content=pages-cta&utm_term=tier-c" rel="noopener">Get an API key and run PixVerse →</a></p>
+<footer>Independent client for the hosted PixVerse endpoint on Synexa. Not affiliated with the model's authors. MIT licensed.</footer>
+</main></body></html>
