@@ -175,3 +175,5 @@ No. This is an independent client that wraps the Synexa-hosted endpoint. PixVers
 ## License
 
 MIT. This is an independent, community-maintained client and is not affiliated with or endorsed by the authors of PixVerse. Model weights and trademarks belong to their respective owners.
+
+_Last reviewed: 2026-09-22_
